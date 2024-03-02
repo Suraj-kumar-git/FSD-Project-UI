@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="main">
+    <div class="filter"> <!--we can also use template reference here inside input tag for multiple entries -->
+      <input type="search" name="search" placeholder="Search here.." [(ngModel)]="searchValue" class="input-search" (input)="onSearch()">
+    </div>
+    
+  </div>
+  <ng-container *ngIf="searchValue.length===0 || tempLoanApplication.length > 0 ; else noResult">
+  <table class="form-table">
+    <thead>
+      <tr>
+        <th>Loan Number</th>
+        <th>Principal</th>
+        <th>Interest Rate</th>
+        <th>Tenure</th>
+        <th>Status</th>
+        <th>Applied Date</th>
+        <th>Loan Type</th>
+        <th>Actions</th>
+        <th>Cancel</th>
+    </thead>
+    <tr *ngFor="let loans of (tempLoanApplication.length > 0 ? tempLoanApplication : loanApplication)">
+      <td>{{loans.loanId}}</td>
+      <td>{{loans.principal}}</td>
+      <td>{{loans.interestRate}}</td>
+      <td>{{loans.tenure}}</td>
+      <td>{{loans.status}}</td>
+      <td>{{loans.loanApplyDate}}</td>
+      <td>{{loans.loanTypeName}}</td>
+      <!-- <td>
+        <button type="button" class="btn" id="update"  [disabled] ="loans.status === 'APPROVED' || loans.status === 'REJECTED' || loans.status=== 'CANCELLED'" 
+        [class.disabled-btn] ="loans.status === 'APPROVED' || loans.status === 'REJECTED' || loans.status=== 'CANCELLED'"
+        (click)="updateLoan(loans.loanId)">Update</button> can you ngIf also
+      </td>
+      <td>
+        <button type="button" class="btn" id="update" 
+        [disabled] ="loans.status === 'APPROVED' || loans.status === 'REJECTED' || loans.status=== 'CANCELLED'" 
+        [class.disabled-btn] ="loans.status === 'APPROVED' || loans.status === 'REJECTED' || loans.status=== 'CANCELLED'" (click)="cancelLoan(loans.loanId)">Cancel</button>
+      </td> -->
+      <td>
+       
+        <button type="button" class="btn" id="update" *ngIf="loans.status === 'PENDING'; else disabledUpdate" (click)="updateLoan(loans.loanId)">Update</button>
+        <ng-template #disabledUpdate>
+          <button type="button" class="btn disabled-btn">Update</button>
+        </ng-template>
+      </td>
+      <td>
+        <button type="button" class="btn" id="cancel" *ngIf="loans.status === 'PENDING'; else disabledCancel" (click)="cancelLoan(loans.loanId)">Cancel</button>
+        <ng-template #disabledCancel>
+          <button type="button" class="btn disabled-btn">Cancel</button>
+        </ng-template>
+      </td>
+    </tr>
+  </table>
+</ng-container>
+<ng-template #noResult>
+  <div style="font-weight: bold; text-align: center; margin-top: 20vh; font-size: 24px;">
+    <p>No Loan Application found</p>
+  </div>
+</ng-template>
+</div>

@@ -1,0 +1,103 @@
+.main{
+  margin: 20px 20px 70px;
+}
+
+.search-filter {
+  display:flex;
+  justify-content: flex-end;
+}
+
+.loans-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.loans-table th,
+.loans-table td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+.loans-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+  text-align: left;
+}
+
+.loans-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.loans-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.loans-table select {
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.loans-table a {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.loans-table a:hover {
+  text-decoration: underline;
+}
+
+.fa-download {
+  margin-right: 4px;
+}
+
+.filter {
+  display: inline;
+  align-items: center;
+  margin-right: 10px;;
+}
+
+.search {
+  display: inline;
+  margin-right: 20px;
+}
+
+.filter-select , .input-search{
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.button {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+button {
+  background-color: blue;
+  color: white;
+}
+
+.btn {
+  padding: 8px 12px;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+  transition: background-color 0.3s ease;
+}
+
+.btn:focus {
+  outline: none;
+}
+

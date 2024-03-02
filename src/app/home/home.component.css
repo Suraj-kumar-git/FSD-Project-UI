@@ -1,0 +1,46 @@
+.container {
+  font-family: Arial, sans-serif;
+  margin: 20px auto;
+  width: 80%;
+}
+
+.form-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.form-table th, .form-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.form-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.form-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.form-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.btn {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
