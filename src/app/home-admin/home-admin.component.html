@@ -38,7 +38,7 @@
       </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let loan of (tempLoanApplication.length > 0 ? tempLoanApplication : loans)">
+        <tr *ngFor="let loan of (tempLoanApplication.length > 0 ? tempLoanApplication : loans)" [class.cancelled]="loan.status==='CANCELLED'" [class.rejected]="loan.status==='REJECTED'" [class.approved]="loan.status==='APPROVED'" [class.pending]="loan.status==='PENDING'">
           <td>{{ loan.loanId }}</td>
           <td>{{ loan.loanTypeName }}</td>
           <td>{{ loan.principal | currency: 'INR' }}</td>
@@ -50,7 +50,7 @@
           <td>{{ loan.propertyAddress }}, INDIA</td>
           <td><a (click)="downloadFile(loan.propertyProofId,loan.propertyFile)" download><i class="fa fa-download"></i>{{ loan.propertyFile }}</a></td>
           <td>
-            <select (change)="onActionChange($event, loan.loanId)" [disabled]="loan.status === 'REJECTED'">
+            <select (change)="onActionChange($event, loan.loanId)" [disabled]="loan.status === 'REJECTED' || loan.status === 'CANCELLED' || loan.status === 'APPROVED'">
               <option [value]="loan.status" selected>{{ loan.status }}</option>
               <option *ngIf="(loan.status !== 'APPROVED')  " value="APPROVED">APPROVE</option>
               <option *ngIf="(loan.status !== 'REJECTED') " value="REJECTED">REJECT</option>

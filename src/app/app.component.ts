@@ -18,14 +18,7 @@ export class AppComponent {
   role:any=this.userAuthService.getRole();
 
   ngOnInit() {
-    // this.logoutIfTokenExpired();
-    // if(this.role==='ADMIN'){
-    //   this.image = this.bgAdmin;
-    // }else if(this.role ==='USER'){
-    //   this.image = this.bgCustomer;
-    // }else{
       this.image = this.bgUser;
-    // }
   }
   logoutIfTokenExpired(): void {
     if (this.userAuthService.isTokenExpired()) {

@@ -62,7 +62,7 @@ export class HomeAdminComponent implements OnInit {
     this.loanInfoService.viewAllAppliedLoans().subscribe((data) => {
       this.loans = data.map((item) => {
         const loanTypeName = item.loanType.loanTypeName;
-        const propertyAddress = item.property.propertyAddress;
+        const propertyAddress = item.propertyInfo.propertyAddress;
         const customer = `${item.customer.customerFirstName} ${item.customer.customerLastName}`;
         const loanApplications = new LoanApplications();
         loanApplications.loanId = item.loanId;
@@ -73,8 +73,8 @@ export class HomeAdminComponent implements OnInit {
         loanApplications.status = item.status;
         loanApplications.tenure = item.tenureInMonths;
         loanApplications.customerName = customer;
-        loanApplications.propertyProofId=item.property.propertyProof.propertyProofId;
-        loanApplications.propertyFile = item.property.propertyProof.name;
+        loanApplications.propertyProofId=item.propertyInfo.propertyProof.propertyProofId;
+        loanApplications.propertyFile = item.propertyInfo.propertyProof.name;
         loanApplications.customerId = item.customer.customerId;
         return loanApplications;
       });

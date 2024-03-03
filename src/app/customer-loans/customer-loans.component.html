@@ -22,7 +22,7 @@
           <th>Actions</th>
           <th>Cancel</th>
       </thead>
-      <tr *ngFor="let loans of (tempLoanApplication.length > 0 ? tempLoanApplication : loanApplication)" [class.rejected]="loans.status === 'REJECTED' || loans.status === 'CANCELLED'" [class.approved]="loans.status === 'APPROVED'" [class.pending]="loans.status === 'PENDING'">
+      <tr *ngFor="let loans of (tempLoanApplication.length > 0 ? tempLoanApplication : loanApplication)" [class.rejected]="loans.status === 'REJECTED'" [class.cancelled]="loans.status === 'CANCELLED'" [class.approved]="loans.status === 'APPROVED'" [class.pending]="loans.status === 'PENDING'">
         <td>{{loans.loanId}}</td>
         <td>{{loans.principal | currency:'INR'}}</td>
         <td>{{loans.interestRate}}%</td>

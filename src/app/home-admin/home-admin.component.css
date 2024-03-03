@@ -12,24 +12,25 @@
   border-collapse: collapse;
 }
 
-.loans-table th,
-.loans-table td {
-  padding: 8px;
+.loans-table th, .loans-table td {
   border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  color: #333; /* Dark text color */
+  background-color: rgba(255, 255, 255, 0.8); /* Light background color with transparency */
 }
 
 .loans-table th {
-  background-color: #f2f2f2;
+  background-color: rgba(240, 240, 240, 0.8); /* Lighter background color for headers with transparency */
   font-weight: bold;
-  text-align: left;
 }
 
-.loans-table tbody tr:nth-child(even) {
-  background-color: #f9f9f9;
+.loans-table tr:nth-child(even) {
+  background-color: rgba(249, 249, 249, 0.8); /* Alternate row color with transparency */
 }
 
-.loans-table tbody tr:hover {
-  background-color: #f1f1f1;
+.loans-table tr:hover {
+  background-color: rgba(241, 241, 241, 0.8); /* Hover color with transparency */
 }
 
 .loans-table select {
@@ -44,6 +45,19 @@
 
 .loans-table a:hover {
   text-decoration: underline;
+}
+
+.loans-table tr.rejected {
+  background-color: #b8051a !important;
+}
+.loans-table tr.approved {
+  background-color: #09ea45 !important;
+}
+.loans-table tr.pending {
+  background-color: #c5f516 !important;
+}
+.loans-table tr.cancelled {
+  background-color: #ccc !important;
 }
 
 .fa-download {

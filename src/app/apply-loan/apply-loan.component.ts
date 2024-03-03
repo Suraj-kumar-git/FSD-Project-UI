@@ -49,9 +49,7 @@ export class ApplyLoanComponent implements OnInit{
 
     this.customerService.applyForLoan(this.loanApplicationRequest,this.file).subscribe(
       (response)=>{
-        console.log(response);
-        console.log("applied loan");
-        
+        console.log(response);        
         if(response==true){
           alert('submitted successfully')
            this.router.navigate(['customer/myLoans'])
