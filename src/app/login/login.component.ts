@@ -12,26 +12,31 @@ import { JsonPipe } from '@angular/common';
 })
 export class LoginComponent {
 
-  constructor(private userAuthService:UserAuthService, private userService: UserService,private router:Router) {}
+  constructor(private userAuthService: UserAuthService, private userService: UserService, private router: Router) { }
 
-  role:string="";
-  doLogin(loginData:Login){
-    this.role=loginData.role;
-    this.userService.login(loginData).subscribe((response:any)=>{
-      this.userAuthService.setToken(response.jwtToken);
-      if(this.role==="ADMIN"){
-        this.userAuthService.setAdmin(response.admin);
-        this.userAuthService.setRole(this.role);
-        this.router.navigate(['/admin/home']);
-        // window.location.reload();
-      }
-      if(this.role==="USER"){
-        this.userAuthService.setRole(response.customer.role);
-        this.userAuthService.setCustomer(response.customer);
-        this.router.navigate(['/customer/home']);
-        // window.location.reload();
-      }
-      this.userAuthService.setTokenExpiresIn(60);
-    },()=>alert("Wrong Credentials for "+this.role));
+  role: string = "";
+  doLogin(loginData: Login) {
+    this.role = loginData.role;
+    if ((this.role === "ADMIN" && !loginData.username.endsWith("@hexaware.com")) || (this.role === "USER" && loginData.username.endsWith("@hexaware.com"))) {
+      alert("wrong credentials entered")
+    } else {
+      this.userService.login(loginData).subscribe((response: any) => {
+        console.log(response);
+        this.userAuthService.setToken(response.jwtToken);
+        if (this.role === "ADMIN" && loginData.username.endsWith("@hexaware.com")) {
+          this.userAuthService.setAdmin(response.admin);
+          this.userAuthService.setRole(response.admin.role);
+          this.router.navigate(['/admin/home']);
+          
+        }
+        if (this.role === "USER" && !loginData.username.endsWith("@hexaware.com")) {
+          this.userAuthService.setRole(response.customer.role);
+          this.userAuthService.setCustomer(response.customer);
+          this.router.navigate(['/customer/home']);
+          
+        }
+        
+      }, () => alert("Wrong Credentials for " + this.role));
+    }
   }
 }

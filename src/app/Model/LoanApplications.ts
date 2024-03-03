@@ -11,4 +11,6 @@ export class LoanApplications {
   propertyFile!: string;
   propertyProofId!:number;
   customerId!:number;
+  totalInterest!:number;
+  emi!:number;
 }

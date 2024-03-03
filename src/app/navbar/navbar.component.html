@@ -21,7 +21,7 @@
 
         <li *ngIf="userRole()==='USER'"><a [class.current]="isActive('/customer/myLoans')" routerLink="customer/myLoans">MyLoans</a></li>
 
-        <!-- <li *ngIf="!isLoggedIn || userRole()==='USER'"><a [class.current]="isActive('/contactUs')" routerLink="contactUs">Contact us</a></li> -->
+        <li *ngIf="!isLoggedIn || userRole()==='USER'"><a [class.current]="isActive('/calculateEMI')" routerLink="calculateEMI">EMI Calc.</a></li>
 
         <li *ngIf="userRole()==='ADMIN'"><a [class.current]="isActive('/admin/account')" routerLink="admin/account"><i class="fas fa-user"></i></a></li>
 

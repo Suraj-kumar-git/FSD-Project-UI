@@ -62,7 +62,7 @@ export class CustomerService {
   }
 
   calculateEMI(data1:any,data2:any,data3:any){
-    const url = `${this.baseUrl}/customer/calculateEMI/${data1}/${data2}/${data3}`;
+    const url = `${this.baseUrl}/checkEMI/${data1}/${data3}/${data2}`;
     const headers=this.getAuthorizationHeader();
     return this.http.get(url,{headers});
   }

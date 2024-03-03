@@ -33,12 +33,17 @@ export class UserAuthService {
   isTokenExpired(): boolean {
     const tokenExpiration = localStorage.getItem('tokenExpiresIn');
     if (!tokenExpiration) {
+      return false;
+    }
+    const expirationTime = parseInt(tokenExpiration, 10);
+    if (isNaN(expirationTime)) {
+      console.error('Invalid token expiration time:', tokenExpiration);
       return true;
     }
-    const expirationTime = parseInt(tokenExpiration);
     const currentTime = new Date().getTime();
     return expirationTime < currentTime;
   }
+  
   
   
 

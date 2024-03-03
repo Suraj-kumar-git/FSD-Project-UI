@@ -6,8 +6,8 @@
                 <th>Loan Type</th>
                 <th>Interest Rate</th>
                 <th>Mang. Fee</th>
-                <th>Action</th>
-                <th>Service</th>
+                <th>Apply-Now</th>
+                <!-- <th>Service</th> -->
             </tr>
         </thead>
         <tr *ngFor="let loans of loanTypeList">
@@ -16,7 +16,7 @@
             <td>{{loans.loanInterestBaseRate}}</td>
             <td>{{loans.loanManagementFees}}</td>
             <td><button type="button" class="btn" (click)="applyLoan(loans.loanTypeName)">Apply now</button></td>
-            <td><button type="button" class="btn" (click)="calculateEMI(loans.loanTypeName)">Check EMI</button></td>
+            <!-- <td><button type="button" class="btn" (click)="calculateEMI(loans.loanTypeName)">Check EMI</button></td> -->
         </tr>
     </table>
 </div>

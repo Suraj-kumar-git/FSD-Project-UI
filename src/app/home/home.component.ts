@@ -10,7 +10,6 @@ import { CustomerService } from '../services/customer.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   constructor(private customerService:CustomerService, private router:Router){}
   ngOnInit(): void {
     this.getLoanTypes();
@@ -27,7 +26,9 @@ loanTypeList:LoanType[] = [];
   applyLoan(){
      this.router.navigate(['/login'])
   }
-  calculateEMI(loanTypeName: string) {
-    this.router.navigate(['calculateEMI/',loanTypeName]);
-   }
+
+  // calculateEMI(loanTypeName: string) {
+  //   this.router.navigate(['calculateEMI/',loanTypeName]);
+  //  }
+  
 }

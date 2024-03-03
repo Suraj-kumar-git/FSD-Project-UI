@@ -21,37 +21,33 @@ export class CustomerLoansComponent {
   }
   customerId = this.userAuthservice.getCustomer().customerId;
   isEdit = false;
-  
-    // getAllAppliedLoan(){
-      
-    //   this.customerService.getAppliedLoans(this.customerId).subscribe(
-    //     (response)=>{
-    //       // this.loanApplication.at = response;
-          
-    //        this.loanApplication[0].loanTypeName = response[0].loanType.loanTypeName;
-    //       console.log(response);
-          
-    //     }
-    //   )
-      
-    // }
     
-    getAllAppliedLoan(){
-      
+  getAllAppliedLoan() {
     this.customerService.getAppliedLoans(this.customerId).subscribe(
       response => {
         this.loanApplication = response.map(loan => {
+          const interest = (loan.principal * loan.interestRate) / 100;
+          const emi = this.calculateEMI(loan.principal, loan.interestRate, loan.tenureInMonths);
           return {
             ...loan,
             loanTypeName: loan.loanType.loanTypeName,
-            tenure:loan.tenureInMonths
+            tenure: loan.tenureInMonths,
+            totalInterest: interest,
+            emi: emi
           };
         });
         console.log(this.loanApplication);
       }
     );
-  
   }
+  
+  calculateEMI(principal: number, interestRate: number, tenure: number): number {
+    const monthlyInterestRate = (interestRate / 100) / 12;
+    const emi = (principal * monthlyInterestRate * Math.pow(1 + monthlyInterestRate, tenure)) /
+                (Math.pow(1 + monthlyInterestRate, tenure) - 1);
+    return parseFloat(emi.toFixed(2));
+  }
+  
   
   
   onSearch(){

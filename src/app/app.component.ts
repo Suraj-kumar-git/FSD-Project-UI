@@ -12,26 +12,26 @@ export class AppComponent {
 
   constructor(public userAuthService:UserAuthService,private router:Router){}
   image='';
-  bgAdmin='/assets/image/adminbg.jpg';
-  bgCustomer='/assets/image/bgimg.jpg';
-  bgUser='/assets/image/bg.jpg';
+  // bgAdmin='/assets/image/Loan.jpg';
+  // bgCustomer='/assets/image/bgimg.jpg';
+  bgUser='/assets/image/Loan.jpg';
   role:any=this.userAuthService.getRole();
 
   ngOnInit() {
     // this.logoutIfTokenExpired();
-    if(this.role==='ADMIN'){
-      this.image = this.bgAdmin;
-    }else if(this.role ==='USER'){
-      this.image = this.bgCustomer;
-    }else{
+    // if(this.role==='ADMIN'){
+    //   this.image = this.bgAdmin;
+    // }else if(this.role ==='USER'){
+    //   this.image = this.bgCustomer;
+    // }else{
       this.image = this.bgUser;
+    // }
+  }
+  logoutIfTokenExpired(): void {
+    if (this.userAuthService.isTokenExpired()) {
+      this.userAuthService.clearToken();
+      alert("Your session has expired...Please login again.");
+      this.router.navigate(['/login']);
     }
   }
-  // logoutIfTokenExpired(): void {
-  //   if (this.userAuthService.isTokenExpired()) {
-  //     this.userAuthService.clearToken();
-  //     alert("Your session has expired...Please login again.");
-  //     this.router.navigate(['/login']);
-  //   }
-  // }
 }

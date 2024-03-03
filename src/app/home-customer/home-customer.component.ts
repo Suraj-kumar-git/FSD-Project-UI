@@ -26,9 +26,9 @@ export class HomeCustomerComponent implements OnInit{
     this.router.navigate(['customer/apply-loan',loanTypeName])
   }
 
-  calculateEMI(loanTypeName: string) {
-    this.router.navigate(['calculateEMI/',loanTypeName]);
-   }
+  // calculateEMI(loanTypeName: string) {
+  //   this.router.navigate(['calculateEMI/',loanTypeName]);
+  //  }
 
    updateLoan(loanId:number){
     console.log(loanId);

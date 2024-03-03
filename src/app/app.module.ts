@@ -34,8 +34,8 @@ import { CalculateEmiComponent } from './calculate-emi/calculate-emi.component';
 import { AllAdminsComponent } from './all-admins/all-admins.component';
 import { NotificationsAdminComponent } from './notifications-admin/notifications-admin.component';
 import { UpdateLoanApplicationComponent } from './update-loan-application/update-loan-application.component';
-import { FaqsComponent } from './faqs/faqs.component';
 import { CancelAppliedLoanComponent } from './cancel-applied-loan/cancel-applied-loan.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,6 @@ import { CancelAppliedLoanComponent } from './cancel-applied-loan/cancel-applied
     AllAdminsComponent,
     NotificationsAdminComponent,
     UpdateLoanApplicationComponent,
-    FaqsComponent,
     CancelAppliedLoanComponent,
   ],
   imports: [
@@ -71,7 +70,8 @@ import { CancelAppliedLoanComponent } from './cancel-applied-loan/cancel-applied
     HttpClientModule,
     FormsModule,
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     AuthGuard,{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
