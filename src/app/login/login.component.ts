@@ -12,7 +12,9 @@ import { JsonPipe } from '@angular/common';
 })
 export class LoginComponent {
 
-  constructor(private userAuthService: UserAuthService, private userService: UserService, private router: Router) { }
+  constructor(private userAuthService: UserAuthService, private userService: UserService, private router: Router) { 
+    this.userAuthService.clearToken();
+  }
 
   role: string = "";
   doLogin(loginData: Login) {
@@ -26,13 +28,13 @@ export class LoginComponent {
         if (this.role === "ADMIN" && loginData.username.endsWith("@hexaware.com")) {
           this.userAuthService.setAdmin(response.admin);
           this.userAuthService.setRole(response.admin.role);
-          this.router.navigate(['/admin/home']);
+          this.router.navigate(['admin/home']);
           
         }
         if (this.role === "USER" && !loginData.username.endsWith("@hexaware.com")) {
           this.userAuthService.setRole(response.customer.role);
           this.userAuthService.setCustomer(response.customer);
-          this.router.navigate(['/customer/home']);
+          this.router.navigate(['customer/home']);
           
         }
         

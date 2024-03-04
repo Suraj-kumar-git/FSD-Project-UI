@@ -35,7 +35,6 @@ import { AllAdminsComponent } from './all-admins/all-admins.component';
 import { NotificationsAdminComponent } from './notifications-admin/notifications-admin.component';
 import { UpdateLoanApplicationComponent } from './update-loan-application/update-loan-application.component';
 import { CancelAppliedLoanComponent } from './cancel-applied-loan/cancel-applied-loan.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -71,7 +70,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
-    NgbModule
   ],
   providers: [
     AuthGuard,{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
