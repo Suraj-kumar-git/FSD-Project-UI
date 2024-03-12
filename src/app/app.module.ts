@@ -19,7 +19,6 @@ import { RouterModule } from '@angular/router';
 import { AccountAdminComponent } from './account-admin/account-admin.component';
 import { AccountCustomerComponent } from './account-customer/account-customer.component';
 import { AuthGuard } from './_auth/auth.guard';
-import { AuthInterceptor } from './_auth/auth.interceptor';
 import { UserService } from './services/user.service';
 import { CustomerService } from './services/customer.service';
 import { LoanInfoService } from './services/loan-info.service';
@@ -72,7 +71,7 @@ import { CancelAppliedLoanComponent } from './cancel-applied-loan/cancel-applied
     ReactiveFormsModule,
   ],
   providers: [
-    AuthGuard,{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    AuthGuard,
     UserService,
     CustomerService,
     LoanInfoService

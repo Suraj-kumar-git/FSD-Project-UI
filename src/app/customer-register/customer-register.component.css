@@ -34,7 +34,6 @@ header {
 
 .gender-container {
   display: flex;
-  flex-direction: row;
 }
 
 .gender-container label {
@@ -72,7 +71,7 @@ header {
   color: red;
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .container {
     max-width: 100%;
   }

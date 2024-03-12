@@ -16,21 +16,21 @@
   border: 1px solid #ddd;
   padding: 8px;
   text-align: center;
-  color: #333; /* Dark text color */
-  background-color: rgba(255, 255, 255, 0.8); /* Light background color with transparency */
+  color: #333;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .loans-table th {
-  background-color: rgba(240, 240, 240, 0.8); /* Lighter background color for headers with transparency */
+  background-color: rgba(240, 240, 240, 0.8);
   font-weight: bold;
 }
 
 .loans-table tr:nth-child(even) {
-  background-color: rgba(249, 249, 249, 0.8); /* Alternate row color with transparency */
+  background-color: rgba(249, 249, 249, 0.8);
 }
 
 .loans-table tr:hover {
-  background-color: rgba(241, 241, 241, 0.8); /* Hover color with transparency */
+  background-color: rgba(241, 241, 241, 0.8);
 }
 
 .loans-table select {

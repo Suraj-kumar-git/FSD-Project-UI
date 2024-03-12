@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Customer } from '../Model/Customer';
 import { Admin } from '../Model/admin';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuthService {
 
-  constructor() { }
+  constructor(private router:Router) { }
 
   public setRole(role: string) {
     localStorage.setItem("role",role);
@@ -31,14 +33,11 @@ export class UserAuthService {
   }
 
   isTokenExpired(): boolean {
-    const tokenExpiration = localStorage.getItem('tokenExpiresIn');
-    if (!tokenExpiration) {
-      return false;
-    }
+    const tokenExpiration = localStorage.getItem('tokenExpiresIn') ?? 'No Token Available';
     const expirationTime = parseInt(tokenExpiration, 10);
     if (isNaN(expirationTime)) {
       console.error('Invalid token expiration time:', tokenExpiration);
-      return true;
+      this.router.navigate(['/home']);
     }
     const currentTime = new Date().getTime();
     return expirationTime < currentTime;

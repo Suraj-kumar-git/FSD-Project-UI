@@ -30,8 +30,8 @@
         <td>{{loans.status}}</td>
         <td>{{loans.loanApplyDate}}</td>
         <td>{{loans.loanTypeName}}</td>
-        <td>{{loans.totalInterest}}</td>
-        <td>{{loans.emi}}</td>
+        <td>{{loans.totalInterest | currency:'INR'}}</td>
+        <td>{{loans.emi | currency:'INR'}}</td>
         <td>
          
           <button type="button" class="btn" id="update" *ngIf="loans.status === 'PENDING'; else disabledUpdate" (click)="updateLoan(loans.loanId)">Update</button>

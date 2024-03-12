@@ -28,14 +28,15 @@ export class LoginComponent {
         if (this.role === "ADMIN" && loginData.username.endsWith("@hexaware.com")) {
           this.userAuthService.setAdmin(response.admin);
           this.userAuthService.setRole(response.admin.role);
+          this.userAuthService.setTokenExpiresIn(60);
           this.router.navigate(['admin/home']);
           
         }
         if (this.role === "USER" && !loginData.username.endsWith("@hexaware.com")) {
           this.userAuthService.setRole(response.customer.role);
           this.userAuthService.setCustomer(response.customer);
+          this.userAuthService.setTokenExpiresIn(60);
           this.router.navigate(['customer/home']);
-          
         }
         
       }, () => alert("Wrong Credentials for " + this.role));
