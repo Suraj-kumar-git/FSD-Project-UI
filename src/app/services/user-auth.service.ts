@@ -9,27 +9,27 @@ import { Router } from '@angular/router';
 })
 export class UserAuthService {
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
   public setRole(role: string) {
-    localStorage.setItem("role",role);
+    localStorage.setItem("role", role);
   }
 
-  public getRole(){
+  public getRole() {
     return localStorage.getItem("role");
   }
 
-  public setToken(token:string) {
-    localStorage.setItem("token",token);
+  public setToken(token: string) {
+    localStorage.setItem("token", token);
   }
 
   public getToken(): string {
     return localStorage.getItem("token") ?? '';
-  }  
+  }
 
-  public setTokenExpiresIn(expiresIn:number){
-    const tokenExpirationTime=new Date().getTime() +1000*60*expiresIn;
-    localStorage.setItem("tokenExpiresIn",tokenExpirationTime.toString());
+  public setTokenExpiresIn(expiresIn: number) {
+    const tokenExpirationTime = new Date().getTime() + 1000 * 60 * expiresIn;
+    localStorage.setItem("tokenExpiresIn", tokenExpirationTime.toString());
   }
 
   isTokenExpired(): boolean {
@@ -42,11 +42,11 @@ export class UserAuthService {
     const currentTime = new Date().getTime();
     return expirationTime < currentTime;
   }
-  
-  
-  
 
-  public clearToken(){
+
+
+
+  public clearToken() {
     localStorage.clear();
   }
 
@@ -55,27 +55,44 @@ export class UserAuthService {
     const role = this.getRole();
     return token !== null && role !== null;
   }
-  public setCustomer(customer:Customer){
-    localStorage.setItem('customer',JSON.stringify(customer));
+  public setCustomer(customer: Customer) {
+    localStorage.setItem('customer', JSON.stringify(customer));
   }
 
-  public getCustomer():any{
+  public setCustomerProfileImage(profileImage: string) {
+    let customerString: string | null = localStorage.getItem('customer');
+    if (customerString) {
+      let customer: Customer = JSON.parse(customerString);
+      customer.profileImage = profileImage;
+      localStorage.setItem('customer', JSON.stringify(customer));
+    }
+  }
+  public setAdminProfileImage(profileImage: string) {
+    let adminString: string | null = localStorage.getItem('admin');
+    if (adminString) {
+      let admin: Admin = JSON.parse(adminString);
+      admin.profileImage = profileImage;
+      localStorage.setItem('admin', JSON.stringify(admin));
+    }
+  }
+
+  public getCustomer(): any {
     const customer = localStorage.getItem('customer');
-    if(customer == null){
+    if (customer == null) {
       throw new Error('customer not found');
     }
     return JSON.parse(customer);
   }
-  public setAdmin(admin:Admin){
-    localStorage.setItem('admin',JSON.stringify(admin));
+  public setAdmin(admin: Admin) {
+    localStorage.setItem('admin', JSON.stringify(admin));
   }
 
-  public getAdmin():any{
+  public getAdmin(): any {
     const admin = localStorage.getItem('admin');
-    if(admin == null){
+    if (admin == null) {
       throw new Error('customer not found');
     }
     return JSON.parse(admin);
   }
-  
+
 }

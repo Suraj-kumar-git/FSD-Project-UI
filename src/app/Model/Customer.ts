@@ -1,5 +1,6 @@
 export class Customer {
   customerId!: number;
+  profileImage!:string;
   customerFirstName!: string;
   customerLastName!: string;
   phoneNumber!: number;

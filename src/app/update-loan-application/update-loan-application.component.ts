@@ -47,12 +47,15 @@ export class UpdateLoanApplicationComponent {
      console.log(this.loanApplicationRequest); 
     this.customerService.updateAppliedLoan(this.loanApplicationRequest,this.file).subscribe(
       (Respose)=>{
-        if(Response){
-          alert("Successfully updated");
-        }else{
-          alert("Couldn't Update, Please Try Again");
-        }
+        alert("Successfully updated");
         window.location.reload();
+      },
+      (error) => {
+        if (error.status === 400 && error.error.includes('PropertyAlreadyExistException')) {
+          alert('Error: ' + error.message);
+        } else{
+          alert("Something went wrong. Please try again later.");
+        }
       }
     );
     this.router.navigate(['customer/myLoans']);

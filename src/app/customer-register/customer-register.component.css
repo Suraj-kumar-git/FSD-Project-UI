@@ -1,6 +1,6 @@
 .container {
   max-width: 500px;
-  margin: 20px auto 70px;
+  margin: 20px auto;
   padding: 20px;
 }
 
@@ -8,6 +8,8 @@ header {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 20px;
+  background-color: aqua;
+  text-align: center;
 }
 
 .form-container {
@@ -62,7 +64,7 @@ header {
   background-color: #45a049;
 }
 .button:disabled {
-  background-color: #ccc; /* Disabled color */
+  background-color: #ccc;
   cursor: not-allowed;
 }
 

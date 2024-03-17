@@ -15,7 +15,7 @@ import { AdminService } from '../services/admin.service';
 })
 export class HomeAdminComponent implements OnInit {
 
-  loanStatus = ['APPROVED', 'PENDING', 'REJECTED', 'CANCELLED', 'IN-PROGRESS'];
+  loanStatus = ['APPROVED', 'PENDING', 'REJECTED', 'CANCELLED'];
   loanType: LoanType[] = [];
   loans: LoanApplications[] = [];
   tempLoanApplication: LoanApplications[] = [];
