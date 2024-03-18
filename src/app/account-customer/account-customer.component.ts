@@ -56,6 +56,7 @@ export class AccountCustomerComponent {
     this.fileService.updateProfileImage(file, fileName, customerId).subscribe(
       response => {
         alert('Profile image updated successfully');
+        window.location.reload();
         console.log('Profile image updated successfully', JSON.stringify(response))
       },
       error => {
@@ -70,6 +71,7 @@ export class AccountCustomerComponent {
     this.fileService.deleteFile(fileName, customerId).subscribe(
       response => {
         alert('Profile Picture removed successfully');
+        window.location.reload();
         console.log('Profile image removed successfully', JSON.stringify(response))
       },
       error => {
