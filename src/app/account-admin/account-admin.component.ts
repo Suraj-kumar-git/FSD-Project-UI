@@ -67,6 +67,7 @@ export class AccountAdminComponent {
     this.fileService.updateProfileImage(file, fileName, adminId).subscribe(
       response => {
         alert('Profile image updated successfully');
+        window.location.reload();
         console.log('Profile image updated successfully', JSON.stringify(response))
       },
       error => {
@@ -82,6 +83,7 @@ export class AccountAdminComponent {
       response => {
         if (response) {
           alert('Profile Picture removed successfully');
+          window.location.reload();
           console.log('Profile image removed successfully', JSON.stringify(response));
         } else {
           alert('Failed to delete file');

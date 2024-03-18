@@ -32,7 +32,15 @@ export class AccountCustomerComponent {
   toggleEditMode() {
     this.editMode = !this.editMode;
   }
-
+  onFileSelected(event: any, fileInput: HTMLInputElement, profileImage: string, adminId: number): void {
+    const file: File = event.target.files[0];
+    if (file.size <= 1048576) {
+      this.onUpdateProfile(event, profileImage, adminId);
+    } else {
+      alert('Image size must be less than 1MB.');
+      fileInput.value = '';
+    }
+  }
   saveChanges() {
     console.log('Saving changes:', this.customer);
     this.toggleEditMode();
@@ -56,10 +64,12 @@ export class AccountCustomerComponent {
     this.fileService.updateProfileImage(file, fileName, customerId).subscribe(
       response => {
         alert('Profile image updated successfully');
+        window.location.reload();
         console.log('Profile image updated successfully', JSON.stringify(response))
       },
       error => {
         console.error('Error updating profile image:', error);
+        window.location.reload();
         alert('Error updating profile image: ' + error.message);
       }
     );
