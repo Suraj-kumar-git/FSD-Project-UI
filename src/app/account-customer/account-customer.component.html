@@ -7,10 +7,10 @@
             <div class="photo-icons">
                 <label class="update-icon">
                     <input type="file" style="display:none" #fileInput
-                        (change)="onUpdateProfile($event,customer.profileImage,customer.customerId)" accept="image/*">
+                      (change)="onFileSelected($event, fileInput, customer.profileImage, customer.customerId)" accept="image/*">
                     <i class="fa fa-edit"></i>
                     <span (click)="fileInput.click()"></span>
-                </label>
+                  </label>
                 <label class="remove-icon" (click)="onDeleteFile(customer.profileImage,customer.customerId)">
                     <i class="fa fa-trash"></i>
                     <span></span>

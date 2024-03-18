@@ -7,7 +7,7 @@ import { UserAuthService } from './user-auth.service';
   providedIn: 'root'
 })
 export class ProfileImageService {
-  private baseUrl = 'http://localhost:8080/api/file'; // Update with your API base URL
+  private baseUrl = 'http://localhost:8080/api/file';
 
   constructor(private http: HttpClient,private userAuthService: UserAuthService) { }
 

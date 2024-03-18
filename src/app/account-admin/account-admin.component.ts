@@ -84,6 +84,7 @@ export class AccountAdminComponent {
       response => {
         if (response) {
           alert('Profile Picture removed successfully');
+          window.location.reload();
           console.log('Profile image removed successfully', JSON.stringify(response));
         } else {
           alert('Failed to delete file');

@@ -19,10 +19,8 @@ export class AdminService {
   }
 
   public updateAccount(admin:any){
-    let token = this.userAuthService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = this.PATH_OF_API+'/update-account';
-    return this.http.put(url,admin, {headers});
+    return this.http.put(url,admin, {headers:this.getAuthorizationToken()});
   }
 
   createAdmin(admin:Admin) {
