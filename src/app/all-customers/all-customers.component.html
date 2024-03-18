@@ -44,7 +44,7 @@
     <div class="customer-details" *ngFor="let customer of (tempCustomer.length>0?tempCustomer:customers)">
       <div class="detail-row">
         <span class="detail-label">Profile Picture:</span>
-        <img [src]="(customer.profileImage !== null && customer.profileImage !== 'null') ? 'https://loan-ms-bucket.s3.amazonaws.com/' + customer.profileImage : 'assets/image/defaultProfile.webp'" alt="Profile Picture" class="profile-picture">
+        <img [src]="(customer.profileImage !== null && customer.profileImage !== 'null') ? customer.image : 'assets/image/defaultProfile.webp'" alt="Profile Picture" class="profile-picture">
       </div>
       <div class="detail-row">
         <span class="detail-label">Customer Name:</span>

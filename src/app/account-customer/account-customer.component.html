@@ -2,7 +2,7 @@
     <h2>Customer Details</h2>
     <div class="customer-info">
         <div class="photo-container">
-            <img [src]="(customer.profileImage !== null && customer.profileImage !== 'null') ? 'https://loan-ms-bucket.s3.amazonaws.com/'+customer.profileImage : 'assets/image/defaultProfile.webp'"
+            <img [src]="(customer.profileImage !== null && customer.profileImage !== 'null') ?customer.image : 'assets/image/defaultProfile.webp'"
                 alt="User Photo" class="user-photo">
             <div class="photo-icons">
                 <label class="update-icon">
@@ -88,6 +88,4 @@
             <i class="fa fa-save"></i> Save
         </button>
     </div>
-
-
 </div>

@@ -24,10 +24,8 @@ export class AdminService {
   }
 
   createAdmin(admin:Admin) {
-    let token = this.userAuthService.getToken();
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
     const url = this.PATH_OF_API+'/createNewAdmin';
-    return this.http.post(url,admin, {headers});
+    return this.http.post(url,admin, {headers:this.getAuthorizationToken()});
   }
 
   getAllAdmins():Observable<Admin[]>{

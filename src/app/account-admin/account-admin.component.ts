@@ -3,7 +3,6 @@ import { Admin } from '../Model/admin';
 import { UserAuthService } from '../services/user-auth.service';
 import { AdminService } from '../services/admin.service';
 import { ProfileImageService } from '../services/profile-image.service';
-import { AbstractControl, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-account-admin',
@@ -31,15 +30,32 @@ export class AccountAdminComponent {
     }
   }
   
-
   loadAdminDetails() {
-    this.admin.adminId = this.userAuthService.getAdmin().adminId;
-    this.admin.profileImage=this.userAuthService.getAdmin().profileImage;
-    this.admin.adminFirstName = this.userAuthService.getAdmin().adminFirstName;;
-    this.admin.adminLastName = this.userAuthService.getAdmin().adminLastName;
-    this.admin.email = this.userAuthService.getAdmin().email;
+    const admin = this.userAuthService.getAdmin();
+    this.admin.adminId = admin.adminId;
+    this.admin.profileImage = admin.profileImage;
+    if (this.admin.profileImage) {
+      const imageData= admin.image;
+      let format = 'jpeg';
+      if (this.admin.profileImage.toLowerCase().endsWith('.jpeg')) {
+        format = 'jpeg';
+      } else if (this.admin.profileImage.toLowerCase().endsWith('.jpg')) {
+        format = 'jpg';
+      } else if (this.admin.profileImage.toLowerCase().endsWith('.png')) {
+        format = 'png';
+      }
+      this.admin.image = this.getImageUrl(imageData, format);
+    }
+    this.admin.adminFirstName = admin.adminFirstName;
+    this.admin.adminLastName = admin.adminLastName;
+    this.admin.email = admin.email;
     this.admin.password = '********';
-  }
+}
+
+getImageUrl(base64String: string, format: string): string {
+    return `data:image/${format};base64,${base64String}`;
+}
+
 
   toggleEditMode() {
     this.editMode = !this.editMode;
@@ -63,12 +79,12 @@ export class AccountAdminComponent {
   onUpdateProfile(event: any, fileName: string, adminId: number) {
     const file: File = event.target.files[0];
     console.log("FileName: ", file.name);
-    this.userAuthService.setAdminProfileImage(this.admin.adminId+'_'+file.name);
+    this.userAuthService.setAdminProfileImage(file.name);
+    this.userAuthService.setAdminProfileImageData(file);
     this.fileService.updateProfileImage(file, fileName, adminId).subscribe(
       response => {
         alert('Profile image updated successfully');
         window.location.reload();
-        console.log('Profile image updated successfully', JSON.stringify(response))
       },
       error => {
         console.error('Error updating profile image:', error);
@@ -85,7 +101,6 @@ export class AccountAdminComponent {
         if (response) {
           alert('Profile Picture removed successfully');
           window.location.reload();
-          console.log('Profile image removed successfully', JSON.stringify(response));
         } else {
           alert('Failed to delete file');
         }

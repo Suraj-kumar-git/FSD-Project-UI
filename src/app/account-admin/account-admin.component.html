@@ -3,7 +3,7 @@
   <div class="admin-info">
     <div class="photo-container">
       <img
-        [src]="(admin.profileImage !== null && admin.profileImage.length !== 0) ? 'https://loan-ms-bucket.s3.amazonaws.com/'+admin.profileImage : 'assets/image/defaultProfile.webp'"
+        [src]="(admin.profileImage !== null && admin.profileImage!== 'null') ? admin.image : 'assets/image/defaultProfile.webp'"
         alt="User Photo" class="user-photo" (click)="onUpdateProfile($event, admin.profileImage, admin.adminId)">
       <div class="photo-icons">
         <label class="update-icon">

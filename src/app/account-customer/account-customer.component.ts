@@ -20,15 +20,47 @@ export class AccountCustomerComponent {
   ];
   customer = new Customer();
   editMode: boolean = false;
-  constructor(private router: Router, private userAuthService: UserAuthService, private customerService: CustomerService,private fileService:ProfileImageService) { }
+  constructor(private router: Router, private userAuthService: UserAuthService, private customerService: CustomerService, private fileService: ProfileImageService) { }
 
   ngOnInit() {
     this.loadCustomerDetails();
   }
   loadCustomerDetails() {
-    this.customer = this.userAuthService.getCustomer();
+    const customer = this.userAuthService.getCustomer();
+    this.customer.address = customer.address;
+    this.customer.age = customer.age;
+    this.customer.customerId = customer.customerId;
+    this.customer.customerFirstName = customer.customerFirstName;
+    this.customer.customerLastName = customer.customerLastName;
+    this.customer.customerProofId = customer.customerProofId;
+    this.customer.phoneNumber = customer.phoneNumber;
+    this.customer.gender = customer.gender;
+    this.customer.email = customer.email;
+    this.customer.country = customer.country;
+    this.customer.state = customer.state;
+    this.customer.panCardNumber = customer.panCardNumber;
+    this.customer.creditScore = customer.creditScore;
+    this.customer.dateOfBirth = customer.dateOfBirth;
+    this.customer.password = customer.password;
+    this.customer.profileImage = customer.profileImage;
+    if (this.customer.profileImage) {
+      const imageData = customer.image;
+      let format = 'jpeg';
+      if (this.customer.profileImage.toLowerCase().endsWith('.jpeg')) {
+        format = 'jpeg';
+      } else if (this.customer.profileImage.toLowerCase().endsWith('.jpg')) {
+        format = 'jpg';
+      } else if (this.customer.profileImage.toLowerCase().endsWith('.png')) {
+        format = 'png';
+      }
+      this.customer.image = this.getImageUrl(imageData, format);
+    }
     console.log(this.customer);
   }
+  getImageUrl(base64String: string, format: string): string {
+    return `data:image/${format};base64,${base64String}`;
+  }
+
   toggleEditMode() {
     this.editMode = !this.editMode;
   }
@@ -60,7 +92,8 @@ export class AccountCustomerComponent {
   onUpdateProfile(event: any, fileName: string, customerId: number) {
     const file: File = event.target.files[0];
     console.log("FileName: ", file.name);
-    this.userAuthService.setCustomerProfileImage(this.customer.customerId+'_'+file.name);
+    this.userAuthService.setCustomerProfileImage(file.name);
+    this.userAuthService.setCustomerProfileImageData(file);
     this.fileService.updateProfileImage(file, fileName, customerId).subscribe(
       response => {
         alert('Profile image updated successfully');
@@ -74,7 +107,7 @@ export class AccountCustomerComponent {
       }
     );
   }
-  onDeleteFile(fileName: string,customerId:number) {
+  onDeleteFile(fileName: string, customerId: number) {
     console.log(fileName);
     this.userAuthService.setCustomerProfileImage("null");
     this.fileService.deleteFile(fileName, customerId).subscribe(
@@ -84,7 +117,7 @@ export class AccountCustomerComponent {
         console.log('Profile image removed successfully', JSON.stringify(response))
       },
       error => {
-        alert('Error deleting file:'+ error.message);
+        alert('Error deleting file:' + error.message);
       }
     );
   }

@@ -48,7 +48,6 @@ export class UpdateLoanApplicationComponent {
     this.customerService.updateAppliedLoan(this.loanApplicationRequest,this.file).subscribe(
       (Respose)=>{
         alert("Successfully updated");
-        window.location.reload();
       },
       (error) => {
         if (error.status === 400 && error.error.includes('PropertyAlreadyExistException')) {
@@ -58,7 +57,7 @@ export class UpdateLoanApplicationComponent {
         }
       }
     );
-    this.router.navigate(['customer/myLoans']);
+    this.router.navigate(['customer/home']);
   }
   
 }

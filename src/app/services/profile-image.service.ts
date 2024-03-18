@@ -24,6 +24,7 @@ export class ProfileImageService {
   }
 
   deleteFile(fileName: string, userId: number): Observable<string> {
+    console.log("FileName: "+fileName+" UserId: "+userId);
     return this.http.delete<string>(`${this.baseUrl}/delete/${userId}/${fileName}`, { headers: this.getAuthorizationHeader() });
   }   
 }

@@ -42,10 +42,6 @@ export class UserAuthService {
     const currentTime = new Date().getTime();
     return expirationTime < currentTime;
   }
-
-
-
-
   public clearToken() {
     localStorage.clear();
   }
@@ -95,4 +91,37 @@ export class UserAuthService {
     return JSON.parse(admin);
   }
 
-}
+  setAdminProfileImageData(file: File) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const imageDataUrl = reader.result?.toString().split(',')[1];
+      let adminString: string | null = localStorage.getItem('admin');
+      if (adminString) {
+        let admin: Admin = JSON.parse(adminString);
+        if (imageDataUrl) {
+          admin.image = imageDataUrl;
+          localStorage.setItem('admin', JSON.stringify(admin));
+        }
+      };
+    }
+  }
+
+  setCustomerProfileImageData(file: File) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const imageDataUrl = reader.result?.toString().split(',')[1];
+      let customerString: string | null = localStorage.getItem('customer');
+      if (customerString) {
+        let customer: Customer = JSON.parse(customerString);
+        if (imageDataUrl) {
+          customer.image = imageDataUrl;
+          localStorage.setItem('customer', JSON.stringify(customer));
+        }
+      };
+    }
+  }
+
+
+  }

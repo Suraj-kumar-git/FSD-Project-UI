@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanApplications } from '../Model/LoanApplications';
 import { LoanInfoService } from '../services/loan-info.service';
-import { HttpClient } from '@angular/common/http';
 import { LoanService } from '../services/loan.service';
 import { LoanType } from '../Model/LoanType';
 import { LoanTypeService } from '../services/loan-type.service';
 import { AdminService } from '../services/admin.service';
-// import { JwtServiceService } from '../services/jwt-service.service';
 
 @Component({
   selector: 'app-home-admin',
